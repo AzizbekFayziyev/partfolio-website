@@ -17,7 +17,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav data-aos="slide-down">
+        <nav>
             <div className="container nav justify-content-around">
 
                 <h1 className='logo'><i class="fa-brands fa-react"></i> <b>AVAN<span>CODER</span></b></h1>
