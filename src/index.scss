@@ -1,0 +1,774 @@
+// Fonts | Montserrat
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400;1,600&display=swap');
+
+// ==== GLOBAL STYLES ====
+
+// Colors
+$blue: #3498db;
+$white: whitesmoke;
+$black: #333;
+$dark: #000000;
+$font: 'Montserrat',
+sans-serif;
+$font-serif: sans-serif;
+
+
+// box-shadow
+$shadow: 1px 1px 6px 3px #3498db;
+$shadow-inset: inset 3px 3px 6px #3498db;
+$bg: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+$bg-dark: linear-gradient(to right, #1d1d1d, #232526);
+
+// hover-line
+@mixin hover-line() {
+  content: "";
+  transition: 0.3s all linear;
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  background: $blue;
+}
+
+// Button 
+@mixin btn($border) {
+  background: $bg;
+  border-radius: $border;
+  transition: 0.3s;
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+
+  &:active {
+    filter: opacity(0.5);
+  }
+
+  &:hover {
+    transform: translateY(5px);
+    background: linear-gradient(to left, #833ab4, #fd1d1d, #fcb045);
+  }
+}
+
+
+.cursor {
+  z-index: 9999999;
+  pointer-events: none;
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  transform: translate(-50%, -50%);
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+* {
+  cursor: none !important;
+
+  &:hover {
+    cursor: none !important;
+  }
+}
+
+body {
+  background: #000000 !important;
+}
+
+video {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+}
+
+.info {
+  font-size: 45px;
+  color: $white;
+  font-family: $font;
+  text-align: center;
+  margin: 10px 0;
+}
+
+::-webkit-input-placeholder {
+  color: whitesmoke !important;
+}
+
+::-webkit-scrollbar {
+  background: #232526;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to top, #833ab4, #fd1d1d, #fcb045);
+}
+
+// Animations
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: $bg;
+  z-index: 99999;
+  transition: 1s all ease;
+
+  span {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+    color: $white;
+  }
+}
+
+.loading-active {
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cursor {
+  0% {
+    filter: hue-rotate(0);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+
+// === Navbar === 
+
+.active {
+  color: $blue !important;
+}
+
+.nav-active {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+nav {
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background: $bg-dark;
+  padding: 16px 0;
+
+  .logo {
+    font-size: 30px;
+    font-family: $font-serif;
+    color: $white;
+
+
+
+
+    i {
+      color: $blue;
+      font-size: 35px;
+      animation: rotate 5s linear infinite;
+    }
+  }
+
+  .nav {
+    transition: 0.5s all ease;
+
+    .nav-link {
+      position: relative;
+      color: $white;
+      font-family: $font;
+      font-size: 20px;
+      font-weight: 600;
+      transition: 0.3s all ease;
+      margin: 0 5px;
+
+      &::before {
+        @include hover-line();
+      }
+
+      &:hover {
+        color: $blue;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+
+    }
+  }
+
+  .btn-global {
+    @include btn(5px);
+    padding: 8px 10px;
+    margin-left: 80px;
+    color: $white;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .mob-nav {
+    z-index: 9999;
+    color: $white;
+    font-size: 36px;
+    transition: 0.3s linear;
+
+    display: none;
+  }
+
+}
+
+// === Home-Section ===
+main {
+  padding: 0 20px;
+  margin-top: 80px;
+  position: relative;
+
+  .img {
+    max-width: 530px;
+    display: flex;
+    align-items: center;
+
+    margin: 0 auto;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+      height: 360px;
+      width: 370px;
+      transition: 0.5s;
+
+
+      &:hover {
+        box-shadow: $shadow;
+      }
+    }
+  }
+
+  .text {
+    margin-top: 30px;
+    text-align: center;
+
+    h1 {
+      background: $bg;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 45px;
+      font-family: fantasy, $font, $font-serif;
+      letter-spacing: 6px;
+
+    }
+
+    h2 {
+      color: $white;
+      line-height: 46px;
+    }
+
+    .btn-cnt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 300px;
+      margin: 25px auto;
+
+      .btn-global {
+        @include btn(5px);
+        color: $white;
+        font-weight: 900;
+        font-family: $font;
+        padding: 10px 14px;
+        font-size: 18px;
+      }
+    }
+
+
+  }
+
+  .social {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      background: $bg;
+      font-size: 40px;
+      color: $black;
+      text-align: center;
+      margin: 6px 0;
+      padding: 4px 6px;
+      border-radius: 10px;
+
+      transition: 0.5s;
+
+      &:hover {
+        transform: translateX(15px);
+        color: $white;
+      }
+    }
+  }
+}
+
+// === About-Section ===
+
+.about {
+  margin: 80px;
+
+  .about-card {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: $bg;
+    border-radius: 25px;
+  }
+
+  .text {
+    h1 {
+      color: transparent;
+      font-family: $font-serif;
+      font-size: 45px;
+      font-weight: 900;
+      -webkit-text-stroke: 2px $white;
+    }
+
+    p {
+      max-width: 500px;
+      color: #dddddd;
+      font-family: $font;
+      font-size: 22px;
+      text-shadow: 5px 5px 5px #000;
+    }
+
+    button {
+      @include btn(10px);
+      border: 1px solid #fff;
+      color: $white;
+      font-weight: 900;
+      font-family: $font;
+      padding: 10px 14px;
+      font-size: 18px;
+    }
+  }
+
+  .img {
+
+    img {
+      max-width: 500px;
+      height: 440px;
+    }
+  }
+
+  .skills {
+    margin-top: 50px;
+
+    .skl-card {
+      text-align: center;
+      background: $bg;
+      border-radius: 8px;
+      max-width: 320px;
+      margin: 30px auto;
+      padding: 15px;
+      transition: 0.4s all;
+
+
+      &:hover {
+        transform: translateY(-15px);
+
+        i {
+          -webkit-text-stroke: 5px $black;
+        }
+      }
+
+      h2 {
+        font-size: 35px;
+        color: #bebdbd;
+      }
+
+      i {
+        transition: 0.3s;
+        font-size: 180px;
+        color: $white;
+      }
+    }
+  }
+
+  .more {
+    margin-top: 50px;
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+
+      button {
+        @include btn(20px);
+        margin: 0 10px;
+        color: $white;
+      }
+    }
+
+    .edu,
+    .social {
+      margin: 30px 0;
+      color: $white;
+      font-size: 28px;
+      transition: 0.5s all ease;
+      background: $bg;
+      border-radius: 5px;
+      padding: 10px;
+
+      a {
+        color: $blue;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+    }
+
+  }
+}
+
+// == Services ==
+
+.services {
+  margin: 80px 0;
+
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg;
+    border-radius: 8px;
+    margin: 25px auto;
+    padding: 10px;
+    max-width: 1000px;
+
+    img {
+      max-width: 400px;
+      height: 400px;
+      padding: 10px;
+    }
+
+    .text {
+      margin-left: 50px;
+      max-width: 450px;
+
+      button {
+        @include btn(8px);
+        color: $white;
+        font-family: $font;
+        border: 1px solid $white;
+        font-size: 20px;
+      }
+
+      h1 {
+        color: transparent;
+        font-family: $font-serif;
+        font-size: 38px;
+        font-weight: 900;
+        -webkit-text-stroke: 1px $white;
+      }
+
+      p {
+        color: $white;
+        font-family: $font;
+        font-size: 25px;
+      }
+    }
+  }
+
+}
+
+// == Portfolio ==
+
+.portfolio {
+  margin: 80px 0;
+
+  img {
+    height: 400px;
+  }
+
+  .card {
+
+    .text {
+      padding: 0 20px;
+      background: $bg;
+
+      .btn-cnt {
+        margin: 10px 0;
+        max-width: 180px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          @include btn(8px);
+          color: $white;
+          border: 2px solid $white;
+        }
+      }
+
+      h2 {
+        text-align: center;
+        font-family: $font;
+        margin: 5px;
+        color: $white;
+      }
+
+      p {
+        font-family: $font;
+        color: $white;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .viewAll{
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
+}
+
+// == Contact ==
+
+.contact {
+  margin-top: 80px;
+
+  form {
+    margin-top: 25px;
+    margin-bottom: 141px;
+    padding: 10px;
+
+    input,
+    textarea {
+      max-width: 500px;
+      background: $bg-dark;
+      color: $white;
+      font-family: cursive, serif;
+
+      &:focus {
+        color: $white;
+        background: $black;
+        font-family: cursive, serif;
+      }
+    }
+
+    button {
+      @include btn(20px);
+      color: $white;
+    }
+  }
+}
+
+// == Footer ===
+
+footer {
+  background: $bg-dark;
+  padding: 20px;
+  text-align: center;
+  font-size: 35px;
+  font-family: $font-serif;
+  color: $white;
+
+  a {
+    text-decoration: none;
+    color: $blue;
+    margin-left: 10px;
+    font-weight: 550;
+  }
+}
+
+
+// === Responsive ===
+
+@media (max-width: 920px) {
+  .portfolio {
+    img {
+      height: 300px !important;
+      object-fit: cover;
+    }
+  }
+}
+
+@media (max-width: 780px) {
+
+  .cursor {
+    display: none !important;
+  }
+
+  nav h1 {
+    font-size: 36px;
+  }
+
+  nav ul {
+    transform: translateY(-100vh);
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    background: $bg-dark;
+    width: 100%;
+    height: 100vh;
+
+    .btn-global {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+
+  .mob-nav {
+    display: block !important;
+  }
+
+  main {
+    .text {
+      h1 {
+        font-size: 30px;
+      }
+    }
+
+    .img {
+      justify-content: center;
+
+      img {
+        width: 240px;
+        height: 240px;
+      }
+    }
+
+    .social {
+      left: 2%;
+      top: 6%;
+      position: absolute;
+
+      a {
+        font-size: 27px;
+      }
+    }
+
+    .btn-cnt {
+      .btn-global {
+        padding: 10px !important;
+        font-style: 15px !important;
+      }
+    }
+  }
+
+  .about {
+    .about-card {
+      max-width: 1000px;
+      padding: 20px;
+    }
+
+    .img {
+
+      img {
+        max-width: 400px;
+        height: 380px;
+      }
+    }
+  }
+
+  .services {
+    .box {
+      flex-wrap: wrap;
+
+      img {
+        margin-top: 10px;
+        width: 300px;
+        height: 300px;
+
+        &:nth-child(2) {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 320px) {
+
+  nav h1 i {
+    display: none !important;
+  }
+
+  main {
+    .text {
+      h1 {
+        font-size: 23px;
+      }
+    }
+
+    .img {
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    .social {
+      top: 3%;
+
+      a {
+        font-size: 23px;
+      }
+    }
+
+  }
+
+  .about {
+    .img {
+      img {
+        max-width: 320px;
+        height: 300px;
+      }
+    }
+  }
+
+  .services {
+    .box {
+      .text {
+
+        h1 {
+          font-size: 28px;
+        }
+      }
+
+      img {
+        width: 240px;
+        height: 240px;
+      }
+    }
+  }
+
+}
